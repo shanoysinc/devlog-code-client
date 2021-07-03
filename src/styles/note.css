@@ -1,0 +1,15 @@
+.markdown__preview-full-screen {
+  background-color: var(--primary-fg-color);
+  padding: 1em 1.5em;
+  border-radius: 4px;
+  width: 95%;
+  margin: 2em auto;
+}
+
+@media screen and (min-width: 60em) {
+  .markdown__preview-full-screen {
+    background-color: var(--primary-fg-color);
+    width: 70%;
+    min-height: 90vh;
+  }
+}

@@ -1,0 +1,194 @@
+.roadmap__timeline-sub-header {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2em;
+}
+
+.roadmap__timeline-title {
+  font-weight: 600;
+}
+.roadmap__timeline-date {
+  margin-top: -1.2em;
+}
+
+.roadmap__timeline-container {
+  margin: 0 1em;
+  margin-left: 0.7em;
+  margin-top: 2.5em;
+}
+
+/* .roadmap__timeline-options {
+  display: flex;
+  gap: 1em;
+} */
+
+.select-options {
+  background-color: var(--primary-fg-color);
+  border-radius: 4px;
+}
+.roadmap__timeline {
+  max-width: 500px;
+  margin: 3em auto;
+}
+
+/* #047857;  #1d4ed8; #4338ca; #be185d;*/
+.roadmap__timeline-card {
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.roadmap__timeline-card-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.roadmap__timeline-card-title {
+  margin-top: 0.5em;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #f3f4f6;
+  text-transform: capitalize;
+}
+
+.roadmap__timeline-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.roadmap__timeline-card__details {
+  display: flex;
+  gap: 0.5em;
+  background-color: hsla(180, 60%, 52%, 0.233);
+  padding: 0.2em 0.5em;
+  height: 25px;
+  width: fit-content;
+  border-radius: 8px;
+}
+
+.roadmap__timeline-card__details-text {
+  font-size: 0.75rem;
+  color: hsl(216, 12%, 75%);
+}
+
+.roadmap__timeline-card__details-item {
+  display: flex;
+  gap: 0.3em;
+}
+
+.roadmap__timeline-card__createdAt > p {
+  margin-top: 0.5em;
+  font-size: 0.75rem;
+  color: hsl(220, 14%, 86%);
+}
+
+.roadmap__timeline__add-button {
+  cursor: pointer;
+}
+
+.create-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2em;
+}
+.cancel-edit-btn {
+  text-align: right;
+  font-weight: 500;
+  color: var(--color-cta);
+  cursor: pointer;
+}
+
+.track-modal__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.ratings__container {
+  display: flex;
+  justify-content: center;
+}
+
+.modal__items-container {
+  padding: 0.5em;
+}
+
+.track-checklist__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 300px;
+}
+
+.track-checklist__items-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: hsl(245, 58%, 51%);
+  border-radius: 4px;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.track-checklist__items-options {
+  display: flex;
+  gap: 1em;
+}
+.resourceLink__container {
+  display: flex;
+  /* gap: 2em; */
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.link-items__container {
+  max-width: 450px;
+}
+.link-item > h3 > span {
+  color: #3bcece;
+}
+
+.link-item__url {
+  margin-left: 1.2em;
+}
+
+.danger-zone__container {
+  border: 1px solid #df3a3a;
+  border-radius: 4px;
+  padding: 1em;
+}
+
+.danger-zone__radio-title {
+  font-size: 0.875rem;
+}
+
+@media screen and (min-width: 40em) {
+  .roadmap__timeline-sub-header {
+    justify-content: flex-end;
+    align-items: baseline;
+    margin-left: -10em;
+  }
+
+  .roadmap__timeline-title {
+    margin: 0 auto;
+  }
+
+  .roadmap__timeline-card {
+    padding: 0.2em 1em;
+  }
+  .roadmap__timeline-card-title {
+    font-size: 1rem;
+  }
+  .roadmap__timeline-card__details {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+  }
+  .roadmap__timeline-card__details-text {
+    font-size: 0.875rem;
+  }
+  .roadmap__timeline-card__details {
+    gap: 1em;
+  }
+}
