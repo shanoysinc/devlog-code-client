@@ -26,7 +26,6 @@ export interface EditNotes_editNote {
   __typename: "Note";
   id: string;
   title: string;
-  description: string;
   markdown: string;
   createdAt: string;
   updatedAt: string;

@@ -19,7 +19,7 @@ export interface UpdateTrack_updateTrack_notes {
   __typename: "Note";
   id: string;
   title: string;
-  description: string;
+  markdown: string;
   tags: UpdateTrack_updateTrack_notes_tags[];
 }
 

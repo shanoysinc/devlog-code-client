@@ -24,7 +24,6 @@ export interface Notes_notes {
   __typename: "Note";
   id: string;
   title: string;
-  description: string;
   markdown: string;
   tags: Notes_notes_tags[];
   createdAt: string;

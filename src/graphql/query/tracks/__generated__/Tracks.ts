@@ -30,7 +30,6 @@ export interface Tracks_tracks_notes {
   __typename: "Note";
   id: string;
   title: string;
-  description: string;
   markdown: string;
   createdAt: string;
   updatedAt: string;

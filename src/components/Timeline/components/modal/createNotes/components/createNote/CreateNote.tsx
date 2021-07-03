@@ -29,8 +29,8 @@ interface Props {
   setCreateNotesModal: (createNotesModal: boolean) => void;
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
-  description: string;
-  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  markdown: string;
+  setMarkdown: React.Dispatch<React.SetStateAction<string>>;
   tags: Notes_notes_tags[];
   setTags: React.Dispatch<React.SetStateAction<Notes_notes_tags[]>>;
 }
@@ -39,8 +39,8 @@ const { TextArea } = Input;
 
 export const CreateNote = ({
   setCreateNotesModal,
-  description,
-  setDescription,
+  markdown,
+  setMarkdown,
   setTags,
   setTitle,
   tags,
@@ -65,9 +65,8 @@ export const CreateNote = ({
       onCompleted: (data) => {
         setCurrentNote(data.createNote);
         setTitle("");
-        setDescription("");
+        setMarkdown("");
         setTags([]);
-
         setCreateNotesModal(false);
         message.success("Note has been successfully created 😊");
       },
@@ -78,21 +77,12 @@ export const CreateNote = ({
     EDIT_NOTES_MUTATION,
     {
       onCompleted: (data) => {
-        const {
-          description,
-          id,
-          title,
-          createdAt,
-          markdown,
-          tags,
-          updatedAt,
-          track,
-        } = data.editNote;
+        const { id, title, createdAt, markdown, tags, updatedAt, track } =
+          data.editNote;
 
         setCurrentNote({
           __typename: "Note",
           title,
-          description,
           id,
           createdAt,
           markdown,
@@ -115,7 +105,7 @@ export const CreateNote = ({
       });
     }
 
-    if (description.length < 140) {
+    if (markdown.length < 140) {
       return openNotificationWithIcon({
         description:
           "Please be as detail as possible with your notes it will help you in the future",
@@ -137,7 +127,7 @@ export const CreateNote = ({
       editNote({
         variables: {
           input: {
-            description,
+            markdown,
             tags: modifyTags,
             title,
             id: currentNote.id,
@@ -152,7 +142,7 @@ export const CreateNote = ({
     createNote({
       variables: {
         input: {
-          description,
+          markdown,
           tags: modifyTags,
           title,
           track: currentSelectedTrack?.id,
@@ -192,8 +182,8 @@ export const CreateNote = ({
       <div style={{ margin: "10px 0" }} />
 
       <TextArea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={markdown}
+        onChange={(e) => setMarkdown(e.target.value)}
         placeholder="Enter your note details here..."
         autoSize={{ minRows: 11, maxRows: 4 }}
         className="input"

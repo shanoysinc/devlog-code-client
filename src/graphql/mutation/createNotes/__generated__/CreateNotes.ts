@@ -26,7 +26,6 @@ export interface CreateNotes_createNote {
   __typename: "Note";
   id: string;
   title: string;
-  description: string;
   markdown: string;
   createdAt: string;
   updatedAt: string;

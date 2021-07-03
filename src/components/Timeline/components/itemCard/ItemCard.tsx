@@ -21,12 +21,9 @@ const { Title } = Typography;
 export const ItemCard = ({ note, noteHandler }: Props) => {
   const history = useHistory();
 
-  const { title, description, createdAt, tags } = note;
+  const { title, markdown, createdAt, tags } = note;
 
-  const readingTime = useMemo(
-    () => calcReadingTime(description),
-    [description]
-  );
+  const readingTime = useMemo(() => calcReadingTime(markdown), [markdown]);
 
   const ReadingTimeElement =
     readingTime < 1 ? (

@@ -8,24 +8,19 @@ import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface Props {
   title: string;
-  description: string;
+  markdown: string;
   tags: Notes_notes_tags[];
 }
 
 const { Title } = Typography;
 
-export const MarkDownPreview = ({
-  description,
-
-  tags,
-  title,
-}: Props) => {
+export const MarkDownPreview = ({ markdown, tags, title }: Props) => {
   const NoteElement = (
     <>
       <Title level={2}>{title}</Title>
       <ItemTags tags={tags} />
       <div style={{ margin: "10px 0" }} />
-      <ReactMarkdown children={description} components={components} />
+      <ReactMarkdown children={markdown} components={components} />
     </>
   );
   return <div className="markdown__preview-container">{NoteElement}</div>;

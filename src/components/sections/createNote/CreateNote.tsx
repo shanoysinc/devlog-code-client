@@ -31,7 +31,7 @@ const { TextArea } = Input;
 export const CreateNote = () => {
   const [title, setTitle] = useState("");
 
-  const [description, setDescription] = useState("");
+  const [markdown, setMarkdown] = useState("");
 
   const [tags, setTags] = useState<Notes_notes_tags[]>([]);
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
@@ -45,13 +45,11 @@ export const CreateNote = () => {
       currentNote: state.currentNote,
     })
   );
-  console.log("selecteditem", selectedItem);
-  console.log("hello");
 
   useEffect(() => {
     if (modifyNote && currentNote) {
       setTitle(currentNote.title);
-      setDescription(currentNote.description);
+      setMarkdown(currentNote.markdown);
       setTags(currentNote.tags);
     }
   }, [modifyNote, currentNote]);
@@ -63,7 +61,7 @@ export const CreateNote = () => {
     onCompleted: (data) => {
       setCurrentNote(data.createNote);
       setTitle("");
-      setDescription("");
+      setMarkdown("");
       setTags([]);
       setSelectedItem([]);
       setCurrentSelectedTrack(null);
@@ -93,7 +91,7 @@ export const CreateNote = () => {
       });
     }
 
-    if (description.length < 140) {
+    if (markdown.length < 140) {
       return openNotificationWithIcon({
         description:
           "Please be as detail as possible with your notes it will help you in the future",
@@ -115,7 +113,7 @@ export const CreateNote = () => {
       editNote({
         variables: {
           input: {
-            description,
+            markdown,
             tags: modifyTags,
             title,
             id: currentNote.id,
@@ -130,7 +128,7 @@ export const CreateNote = () => {
     createNote({
       variables: {
         input: {
-          description,
+          markdown,
           tags: modifyTags,
           title,
           track: currentSelectedTrack?.id,
@@ -174,8 +172,8 @@ export const CreateNote = () => {
         <div style={{ margin: "10px 0" }} />
 
         <TextArea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={markdown}
+          onChange={(e) => setMarkdown(e.target.value)}
           placeholder="Enter your note details here..."
           autoSize={{ minRows: 11, maxRows: 4 }}
           className="input"

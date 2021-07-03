@@ -40,7 +40,7 @@ export const NotesList = ({ notes }: Props) => {
         >
           <Item.Meta
             title={<div>{note.title}</div>}
-            description={`${wordsLimiter(note.description, 140)}`}
+            description={`${wordsLimiter(note.markdown, 140)}`}
           />
         </List.Item>
       )}

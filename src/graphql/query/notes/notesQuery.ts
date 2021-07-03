@@ -5,7 +5,6 @@ export const NOTES_QUERY = gql`
     notes {
       id
       title
-      description
       markdown
       tags {
         value

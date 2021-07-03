@@ -5,7 +5,6 @@ export const EDIT_NOTES_MUTATION = gql`
     editNote(input: $input) {
       id
       title
-      description
       markdown
       createdAt
       updatedAt

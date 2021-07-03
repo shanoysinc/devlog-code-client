@@ -10,7 +10,7 @@ export const UPDATE_TRACK = gql`
       notes {
         id
         title
-        description
+        markdown     
         tags {
           value
           color

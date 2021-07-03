@@ -26,14 +26,14 @@ export const CreateNotesModal = ({
 
   const [title, setTitle] = useState("");
 
-  const [description, setDescription] = useState("");
+  const [markdown, setMarkdown] = useState("");
 
   const [tags, setTags] = useState<Notes_notes_tags[]>([]);
 
   useEffect(() => {
     if (modifyNote && currentNote) {
       setTitle(currentNote.title);
-      setDescription(currentNote.description);
+      setMarkdown(currentNote.markdown);
       setTags(currentNote.tags);
     }
   }, [modifyNote, currentNote]);
@@ -42,7 +42,7 @@ export const CreateNotesModal = ({
     if (modifyNote) {
       setModifyNote(false);
       setTitle("");
-      setDescription("");
+      setMarkdown("");
       setTags([]);
     }
 
@@ -72,8 +72,8 @@ export const CreateNotesModal = ({
             setCreateNotesModal={setCreateNotesModal}
             title={title}
             setTitle={setTitle}
-            description={description}
-            setDescription={setDescription}
+            markdown={markdown}
+            setMarkdown={setMarkdown}
             tags={tags}
             setTags={setTags}
           />
@@ -86,11 +86,7 @@ export const CreateNotesModal = ({
           }
           key="2"
         >
-          <MarkDownPreview
-            title={title}
-            description={description}
-            tags={tags}
-          />
+          <MarkDownPreview title={title} markdown={markdown} tags={tags} />
         </TabPane>
       </Tabs>
     </Modal>

@@ -17,7 +17,6 @@ export interface DeleteNote_deleteNote {
   __typename: "Note";
   id: string;
   title: string;
-  description: string;
   markdown: string;
   tags: DeleteNote_deleteNote_tags[];
   createdAt: string;

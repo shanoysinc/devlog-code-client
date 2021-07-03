@@ -43,14 +43,14 @@ export interface EditCheckListInput {
 export interface EditNoteInput {
   id: string;
   title: string;
-  description: string;
+  markdown: string;
   tags: TagInput[];
   track?: string | null;
 }
 
 export interface NoteInput {
   title: string;
-  description: string;
+  markdown: string;
   tags: TagInput[];
   track?: string | null;
 }

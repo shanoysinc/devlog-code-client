@@ -5,7 +5,6 @@ export const DELETE_NOTE_MUTATION = gql`
     deleteNote(id: $id) {
       id
       title
-      description
       markdown
       tags {
         value

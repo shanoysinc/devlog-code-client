@@ -142,10 +142,7 @@ export const NotePreview = ({ style }: Props) => {
       </div>
       <div style={{ margin: "15px 0" }} />
       <Divider dashed />
-      <ReactMarkdown
-        children={currentNote.description}
-        components={components}
-      />
+      <ReactMarkdown children={currentNote.markdown} components={components} />
     </>
   ) : (
     <div className="empty-icon__girl-on-computer">

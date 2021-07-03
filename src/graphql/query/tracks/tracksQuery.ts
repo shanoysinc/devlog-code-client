@@ -14,9 +14,7 @@ export const TRACKS_QUERY = gql`
       }
       notes {
         id
-        title
-        description
-        
+        title        
         markdown
         createdAt
         updatedAt
