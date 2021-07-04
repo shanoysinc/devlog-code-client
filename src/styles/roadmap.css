@@ -58,6 +58,7 @@
 .roadmap__timeline-card__footer {
   display: flex;
   justify-content: space-between;
+  gap: 0.3em;
   align-items: baseline;
   flex-wrap: wrap;
 }
@@ -78,13 +79,14 @@
 
 .roadmap__timeline-card__details-item {
   display: flex;
+  align-items: baseline;
   gap: 0.3em;
 }
 
 .roadmap__timeline-card__createdAt > p {
   margin-top: 0.5em;
   font-size: 0.75rem;
-  color: hsl(220, 14%, 86%);
+  color: hsl(220, 14%, 70%);
 }
 
 .roadmap__timeline__add-button {

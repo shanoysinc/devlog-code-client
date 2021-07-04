@@ -7,7 +7,6 @@ import {
   CreateTrackVariables,
 } from "../../../../../graphql/mutation/createTrack/__generated__/CreateTrack";
 import { TRACKS_QUERY } from "../../../../../graphql/query/tracks/tracksQuery";
-import { openNotificationWithIcon } from "../../../../../utils/components";
 
 interface Props {
   createTrackModal: boolean;
@@ -34,12 +33,10 @@ export const CreateTrackModal = ({
   });
 
   const createTrackHandler = () => {
-    if (title.length < 10) {
-      return openNotificationWithIcon({
-        description: "Please enter a Title with a character of 10 or more",
-        title: "Title Error",
-        type: "error",
-      });
+    if (title.length < 5) {
+      return message.error(
+        "Please enter a Title with a character of 5 or more"
+      );
     }
     createTrack({
       variables: { input: { title, description } },
