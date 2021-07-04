@@ -61,6 +61,7 @@
   gap: 0.3em;
   align-items: baseline;
   flex-wrap: wrap;
+  margin-bottom: -0.7em;
 }
 .roadmap__timeline-card__details {
   display: flex;
@@ -84,7 +85,7 @@
 }
 
 .roadmap__timeline-card__createdAt > p {
-  margin-top: 0.5em;
+  margin-top: -0.3em;
   font-size: 0.7rem;
   color: hsl(220, 14%, 70%);
 }
