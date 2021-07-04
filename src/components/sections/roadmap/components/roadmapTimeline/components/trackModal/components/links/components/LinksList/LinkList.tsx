@@ -14,8 +14,6 @@ interface Props {
 const { Title } = Typography;
 const { Panel } = Collapse;
 export const LinkList = ({ currentTrackId }: Props) => {
-  console.log(currentTrackId);
-
   const { data } = useQuery<ResourceLinksData, ResourceLinksVariables>(
     GET_RESOURCE_LINKS,
     { variables: { trackId: currentTrackId } }

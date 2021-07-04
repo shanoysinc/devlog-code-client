@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { Input, Button, message, Select } from "antd";
-import { openNotificationWithIcon } from "../../../../../../../utils/components";
+import { Input, Button, message, Select, Spin } from "antd";
 import {
   CREATE_NOTES_MUTATION,
   EDIT_NOTES_MUTATION,
@@ -59,66 +58,57 @@ export const CreateNote = ({
   const [currentSelectedTrack, setCurrentSelectedTrack] =
     useState<Tracks_tracks | null>(null);
 
-  const [createNote] = useMutation<CreateNotesData, CreateNotesVariables>(
-    CREATE_NOTES_MUTATION,
-    {
-      onCompleted: (data) => {
-        setCurrentNote(data.createNote);
-        setTitle("");
-        setMarkdown("");
-        setTags([]);
-        setCreateNotesModal(false);
-        message.success("Note has been successfully created 😊");
-      },
-    }
-  );
+  const [createNote, { loading: createLoading }] = useMutation<
+    CreateNotesData,
+    CreateNotesVariables
+  >(CREATE_NOTES_MUTATION, {
+    onCompleted: (data) => {
+      setCurrentNote(data.createNote);
+      setTitle("");
+      setMarkdown("");
+      setTags([]);
+      setCreateNotesModal(false);
+      message.success("Note has been successfully created 😊");
+    },
+  });
 
-  const [editNote] = useMutation<EditNotesData, EditNotesVariables>(
-    EDIT_NOTES_MUTATION,
-    {
-      onCompleted: (data) => {
-        const { id, title, createdAt, markdown, tags, updatedAt, track } =
-          data.editNote;
+  const [editNote, { loading: editLoading }] = useMutation<
+    EditNotesData,
+    EditNotesVariables
+  >(EDIT_NOTES_MUTATION, {
+    onCompleted: (data) => {
+      const { id, title, createdAt, markdown, tags, updatedAt, track } =
+        data.editNote;
 
-        setCurrentNote({
-          __typename: "Note",
-          title,
-          id,
-          createdAt,
-          markdown,
-          tags,
-          updatedAt,
-          track,
-        });
-        setCreateNotesModal(false);
-        message.success("Note has been successfully updated 😊");
-      },
-    }
-  );
+      setCurrentNote({
+        __typename: "Note",
+        title,
+        id,
+        createdAt,
+        markdown,
+        tags,
+        updatedAt,
+        track,
+      });
+      setCreateNotesModal(false);
+      message.success("Note has been successfully updated 😊");
+    },
+  });
 
   const createNoteHandler = () => {
     if (title.length < 10) {
-      return openNotificationWithIcon({
-        description: "Please enter a Title with a character of 10 or more",
-        title: "Title Error",
-        type: "error",
-      });
+      return message.error(
+        "Please enter a Title with a character of 10 or more"
+      );
     }
 
     if (markdown.length < 140) {
-      return openNotificationWithIcon({
-        description:
-          "Please be as detail as possible with your notes it will help you in the future",
-        title: "Description Error",
-        type: "error",
-      });
+      return message.error(
+        "Please be as detail as possible with your notes it will help you in the future"
+      );
     }
     if (tags.length < 1) {
-      return openNotificationWithIcon({
-        description: "Atleast one tags is require to submit your note",
-        title: "Tags Error",
-        type: "error",
-      });
+      return message.error("Atleast one tags is require to submit your note");
     }
 
     const modifyTags = removeTypeNameField(tags);
@@ -169,65 +159,75 @@ export const CreateNote = ({
     setCurrentSelectedTrack(track);
   };
 
+  const loadingNote = createLoading || editLoading ? true : false;
   return (
-    <div className="create-note__container">
-      <Input
-        placeholder="What's the title for your note"
-        onChange={(e) => setTitle(e.target.value)}
-        className="input"
-        value={title}
-        size="large"
-        style={{ fontSize: "1.25rem", fontWeight: 500 }}
-      />
-      <div style={{ margin: "10px 0" }} />
-
-      <TextArea
-        value={markdown}
-        onChange={(e) => setMarkdown(e.target.value)}
-        placeholder="Enter your note details here..."
-        autoSize={{ minRows: 11, maxRows: 4 }}
-        className="input"
-        style={{ fontSize: "1rem" }}
-      />
-      <div style={{ margin: "10px 0" }} />
-
-      {!modifyNote && (
-        <Select
-          className="select"
-          mode="multiple"
-          placeholder="Connect your Note to a track"
-          value={selectedItem}
-          onChange={selectItemHandler}
-          style={{ width: "300px" }}
-          bordered={false}
-        >
-          {filteredOptions.map((item) => (
-            <Select.Option className="select" key={item.id} value={item.title}>
-              {item.title}
-            </Select.Option>
-          ))}
-        </Select>
-      )}
-
-      <div style={{ margin: "10px 0" }} />
-      <CreateTags tags={tags} setTags={setTags} />
-
-      <div style={{ margin: "10px 0" }} />
-
-      <div className="create-notes__modal-btn-container">
-        <Button
+    <Spin
+      spinning={loadingNote}
+      tip={createLoading ? "creating note..." : "updating note..."}
+    >
+      <div className="create-note__container">
+        <Input
+          placeholder="What's the title for your note"
+          onChange={(e) => setTitle(e.target.value)}
+          className="input"
+          value={title}
           size="large"
-          style={{
-            backgroundColor: "#4338ca",
-            color: "white",
-            width: "150px",
-            border: 0,
-          }}
-          onClick={createNoteHandler}
-        >
-          {modifyNote ? "Update" : "Create"}
-        </Button>
+          style={{ fontSize: "1.25rem", fontWeight: 500 }}
+        />
+        <div style={{ margin: "10px 0" }} />
+
+        <TextArea
+          value={markdown}
+          onChange={(e) => setMarkdown(e.target.value)}
+          placeholder="Enter your note details here..."
+          autoSize={{ minRows: 11, maxRows: 4 }}
+          className="input"
+          style={{ fontSize: "1rem" }}
+        />
+        <div style={{ margin: "10px 0" }} />
+
+        {!modifyNote && (
+          <Select
+            className="select"
+            mode="multiple"
+            placeholder="Connect your Note to a track"
+            value={selectedItem}
+            onChange={selectItemHandler}
+            style={{ width: "300px" }}
+            bordered={false}
+          >
+            {filteredOptions.map((item) => (
+              <Select.Option
+                className="select"
+                key={item.id}
+                value={item.title}
+              >
+                {item.title}
+              </Select.Option>
+            ))}
+          </Select>
+        )}
+
+        <div style={{ margin: "10px 0" }} />
+        <CreateTags tags={tags} setTags={setTags} />
+
+        <div style={{ margin: "10px 0" }} />
+
+        <div className="create-notes__modal-btn-container">
+          <Button
+            size="large"
+            style={{
+              backgroundColor: "#4338ca",
+              color: "white",
+              width: "150px",
+              border: 0,
+            }}
+            onClick={createNoteHandler}
+          >
+            {modifyNote ? "Update" : "Create"}
+          </Button>
+        </div>
       </div>
-    </div>
+    </Spin>
   );
 };

@@ -10,20 +10,26 @@ export const AppHeader = () => {
   const logoLinkHandler = () => {
     history.push("/");
   };
+
   return (
     <Header className="navbar">
       <div className="navbar__items-left">
         <Space size="middle">
           <h1 className="logo__title" onClick={logoLinkHandler}>
-            <span className="logo__sub-title">Dev</span>Log
+            <span className="logo__sub-title">Dev</span>log
           </h1>
           {/* <div className="navbar-search">
-            <Input
-              size="large"
-              placeholder="Search"
-              prefix={<SearchOutlined />}
-              bordered={false}
-              className="input"
+            <AutoComplete
+              style={{ width: "100%" }}
+              size="middle"
+              suffixIcon={<SearchOutlined />}
+              options={notes}
+              placeholder="Try searching for a note"
+              filterOption={(inputValue, note) =>
+                note!.title.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+                -1
+              }
+              onSelect={searchBarHandler}
             />
           </div> */}
         </Space>
