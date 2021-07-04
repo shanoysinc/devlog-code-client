@@ -165,7 +165,6 @@ const components: ReactMarkdownOptions["components"] = {
         style={a11yDark}
         language={match[1]}
         PreTag="div"
-        showLineNumbers
         {...props}
       >
         {children}
