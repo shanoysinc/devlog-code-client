@@ -85,7 +85,7 @@
 }
 
 .roadmap__timeline-card__createdAt > p {
-  margin-top: -0.3em;
+  margin-top: -0.2em;
   font-size: 0.7rem;
   color: hsl(220, 14%, 70%);
 }
@@ -167,6 +167,9 @@
 }
 
 @media screen and (min-width: 40em) {
+  .roadmap__timeline-card__footer {
+    margin-bottom: initial;
+  }
   .roadmap__timeline-sub-header {
     justify-content: flex-end;
     align-items: baseline;
